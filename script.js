@@ -5,31 +5,23 @@ buttonItems.forEach(item => item.addEventListener("click", function () {display.
 //how to stack the digits instead of replace on each click?
     //change displays text to button text
 
-//add
-function add (a,b) {
+function sum (a,b) {
     return a + b;
 }
-add(3,4);
 
-//subtract
 function subtract (a,b) {
     return a - b;
 }
-subtract(9,2);
 
-//multiply
 function multiply (a,b) {
     return a * b;
 }
-multiply(3,4);
 
-//divide
 function divide (a,b) {
     return a / b;
 }
-divide(4,2);
 
-function operate (operator,a,b) {
-   return operator;
+function operate (operator) {
+   console.log(operator);
 }
-operate(subtract(5,4));
+operate(subtract(6,1))
