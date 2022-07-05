@@ -3,7 +3,6 @@
     font-family:Verdana, Geneva, Tahoma, sans-serif
  }
 
-
  h1 {
     padding: 10px;
  }
@@ -52,10 +51,10 @@
     font-size: 20px;
     border-radius: 20px;
     height: 9vh;
+    background-color:whitesmoke;
 }
 
 .function-buttons {
-    background-color:whitesmoke;
     background-color:rgb(243, 202, 189);
     border: 1px solid black;
     font-weight: 650;
@@ -64,7 +63,8 @@
 
 .button-items:hover {
     cursor: pointer;
-    transform: scale(1.05);
+    transform: scale(1.10);
+    background-color:rgb(300, 290, 220);
 }
 
 #equals-button {
