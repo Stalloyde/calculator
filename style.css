@@ -67,7 +67,7 @@
     background-color:rgb(300, 290, 220);
 }
 
-#equals-button {
+#equals{
     grid-column-start: 3;
     grid-column-end: 5;
 }

@@ -4,23 +4,18 @@ const display = document.querySelector(".display");
 const displayValue1 = [];
 const displayValue2 = [];
 
+//problem is the data storage of first and second wave of input.
 digitButtons.forEach(item => item.addEventListener("click", function () {
     display.textContent += this.textContent;
     displayValue1.push(display.textContent); 
+    displayValue2.push(display.textContent);
 }))   
 
-// the display.textContent being retrieve contains displayValue1. need to clear the display.textContent after clicking '+'
 functionButtons.forEach(item => item.addEventListener("click", function () {
     display.textContent = "";
-    displayValue2.push(display.textContent);
+    //haven't added function sum/subract/multiple/divide
 })); 
 
-
-//click '+'
-// take final element of displayValue1
-// activates function sum()... 
-// activates displayValue2
-//
 
 function sum (displayValue1, displayValue2) {
     return displayValue1 + displayValue2;
