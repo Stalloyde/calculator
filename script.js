@@ -1,27 +1,31 @@
-//wire up all digits + AC and DEL buttons to display
-const buttonItems = document.querySelectorAll(".button-digits");
+const digitButtons = document.querySelectorAll(".digit-buttons");
+const functionButtons = document.querySelectorAll(".function-Buttons")
 const display = document.querySelector(".display");
-buttonItems.forEach(item => item.addEventListener("click", function () {display.textContent += this.textContent}));   
-//how to stack the digits instead of replace on each click?
-    //change displays text to button text
+const displayValue1 = [];
+const displayValue2 = [];
 
-function sum (a,b) {
-    return a + b;
+digitButtons.forEach(item => item.addEventListener("click", function () {
+    display.textContent += this.textContent;
+    displayValue1.push(display.textContent);
+}));   
+
+
+function sum (displayValue1, displayValue2) {
+    return displayValue1 + displayValue2;
 }
 
-function subtract (a,b) {
-    return a - b;
+function subtract (displayValue1, displayValue2) {
+    return displayValue1 - displayValue2;
 }
 
-function multiply (a,b) {
-    return a * b;
+function multiply (displayValue1, displayValue2) {
+    return displayValue1 * displayValue2;
 }
 
-function divide (a,b) {
-    return a / b;
+function divide (displayValue1, displayValue2) {
+    return displayValue1 / displayValue2;
 }
 
 function operate (operator) {
    return operator;
 }
-operate(subtract(6,1))
