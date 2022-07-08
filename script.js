@@ -76,13 +76,20 @@ subtractButton.addEventListener("click", function () {
 }) 
 
 equalsButton.addEventListener("click", function () {
-    display.textContent = "";
-    const finalValue1 = Number(displayValue1.slice(-1));
-    const finalValue2 = Number(displayValue2.slice(-1));
-    const finalOperator = operatorValue.toString();
-    display.textContent += operator(finalOperator, finalValue1, finalValue2);
+    display.textContent = "";   
+    const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
+    display.textContent +=  solutionValue;
+    console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
+    functionButtonClicked = false;
+    displayValue1.length = 0;
+    displayValue2.length = 0;
+    operatorValue.length = 0;
+    displayValue1.push(solutionValue);
+})
 
- })
+ 
 
 
 
