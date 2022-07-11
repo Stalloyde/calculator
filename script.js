@@ -46,53 +46,54 @@ function operator (operator, num1, num2) {
     };
 }
 
+function getSolution () {
+    display.textContent = "";   
+    const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
+    display.textContent +=  solutionValue;
+    functionButtonClicked = false;
+    displayValue1.length = 0;
+    displayValue2.length = 0;
+    operatorValue.length = 0;
+    displayValue1.push(solutionValue);
+ }
+
+function resetDisplay () {
+    functionButtonClicked = true;
+    display.textContent = "";
+}
+
 digitButtons.forEach(item => item.addEventListener("click", function () {
     display.textContent += this.textContent;
     (functionButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
 }))   
 
 divideButton.addEventListener("click", function () {
-    functionButtonClicked = true;
-    display.textContent = "";
+    resetDisplay();
     operatorValue.push("divide");
 })
 
 multiplyButton.addEventListener("click", function () {
-    functionButtonClicked = true;
-    display.textContent = "";
+    resetDisplay();
     operatorValue.push("multiply");
 })
 
 sumButton.addEventListener("click", function () {
-    functionButtonClicked = true;
-    display.textContent = "";
+    resetDisplay();
     operatorValue.push("sum");
 })
 
 subtractButton.addEventListener("click", function () {
-    functionButtonClicked = true;
-    display.textContent = "";
+    resetDisplay();
     operatorValue.push("subtract");
 }) 
 
-equalsButton.addEventListener("click", function () {
-    display.textContent = "";   
-    const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
-    display.textContent +=  solutionValue;
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    functionButtonClicked = false;
-    displayValue1.length = 0;
-    displayValue2.length = 0;
-    operatorValue.length = 0;
-    displayValue1.push(solutionValue);
-})
-
- 
+equalsButton.addEventListener("click", getSolution);
 
 
 
+//object that contains dV and oV
+//keep adding more dV and oVs in tandem with clicks
+//loop to retrieve?
 
 
-    
+    //click operator button -> if dV1 & dv2 isnt empty, run solutionValue
