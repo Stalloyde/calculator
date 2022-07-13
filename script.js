@@ -13,7 +13,7 @@ const display = document.querySelector(".display");
 const displayValue1 = [];
 const displayValue2 = [];
 const operatorValue = [];
-let functionButtonClicked = false;
+let operatorButtonClicked = false;
 let equalsButtonClicked = false;
 
 
@@ -58,7 +58,6 @@ function getSolution () {
  }
 
 function resetDisplay () {
-    functionButtonClicked = true;
     display.textContent = "";
 }
 
@@ -67,66 +66,80 @@ function reset () {
     displayValue1.length = 0;
     displayValue2.length = 0;
     operatorValue.length = 0;
-    functionButtonClicked = false;
+    operatorButtonClicked = false;
 }
 
-//why arent my numbers concatenating on each other??
 digitButtons.forEach(item => item.addEventListener("click", function () {
     display.textContent += this.textContent;
-    (functionButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
+    (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
 
-    if (equalsButtonClicked === true) {
+    if (equalsButtonClicked === true && operatorButtonClicked === false) {
         reset();
         display.textContent += this.textContent;
         equalsButtonClicked = false;
-        (functionButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
+        (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
     }
     console.log(displayValue1)
     console.log(displayValue2)
     console.log(operatorValue)
+    console.log(operatorButtonClicked)
 }))   
 
 divideButton.addEventListener("click", function () {
+    operatorButtonClicked = true;
     resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("divide");
     console.log(displayValue1)
     console.log(displayValue2)
     console.log(operatorValue)
+    console.log(operatorButtonClicked)
 })
 
 multiplyButton.addEventListener("click", function () {
+    operatorButtonClicked = true;
     resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("multiply");
+    console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
+    console.log(operatorButtonClicked)
 })
 
 sumButton.addEventListener("click", function () {
+    operatorButtonClicked = true;
     resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("sum");
+    console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
+    console.log(operatorButtonClicked)
 })
 
 subtractButton.addEventListener("click", function () {
+    operatorButtonClicked = true;
     resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("subtract");
+    console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
+    console.log(operatorButtonClicked)
 }) 
 
 equalsButton.addEventListener("click", function () {
-    functionButtonClicked = false;
+    operatorButtonClicked = false;
     equalsButtonClicked = true;
     resetDisplay();
     getSolution();
     console.log(displayValue1)
     console.log(displayValue2)
     console.log(operatorValue)
+    console.log(operatorButtonClicked)
 });
 
-// first condition: equals button clicked -> if click on digit, to start new calculation... empty all arrays and reset all functions.
-    // input the new digit clicked into dv1
-
-    //  equals button clicked -> if click on operator, chain operation
 
 // second condition: equals button not clicked. operator button clicked -> solution displayed on screen -> carry over solution number to dV1 
 // -> when clicking next number, empty display screen, display screen show next number, push next number clicked to dV2 
