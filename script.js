@@ -77,8 +77,9 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
 
     if (equalsButtonClicked === true) {
         reset();
-        equalsButtonClicked = false;
         display.textContent += this.textContent;
+        equalsButtonClicked = false;
+        (functionButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
     }
     console.log(displayValue1)
     console.log(displayValue2)
