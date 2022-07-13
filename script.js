@@ -86,8 +86,8 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
 }))   
 
 divideButton.addEventListener("click", function () {
+    display.textContent = "";
     operatorButtonClicked = true;
-    resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("divide");
     console.log(displayValue1)
@@ -97,8 +97,8 @@ divideButton.addEventListener("click", function () {
 })
 
 multiplyButton.addEventListener("click", function () {
+    display.textContent = "";
     operatorButtonClicked = true;
-    resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("multiply");
     console.log(displayValue1)
@@ -108,8 +108,8 @@ multiplyButton.addEventListener("click", function () {
 })
 
 sumButton.addEventListener("click", function () {
+    display.textContent = "";
     operatorButtonClicked = true;
-    resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("sum");
     console.log(displayValue1)
@@ -119,8 +119,8 @@ sumButton.addEventListener("click", function () {
 })
 
 subtractButton.addEventListener("click", function () {
+    display.textContent = "";
     operatorButtonClicked = true;
-    resetDisplay();
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("subtract");
     console.log(displayValue1)
@@ -130,9 +130,9 @@ subtractButton.addEventListener("click", function () {
 }) 
 
 equalsButton.addEventListener("click", function () {
+    display.textContent = "";
     operatorButtonClicked = false;
     equalsButtonClicked = true;
-    resetDisplay();
     getSolution();
     console.log(displayValue1)
     console.log(displayValue2)
