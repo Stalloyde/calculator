@@ -15,6 +15,7 @@ const displayValue2 = [];
 const operatorValue = [];
 let operatorButtonClicked = false;
 let equalsButtonClicked = false;
+let solutionValueCheck = false;
 
 
 function divide (finalValue1, finalValue2) {
@@ -55,11 +56,8 @@ function getSolution () {
     displayValue2.length = 0;
     operatorValue.length = 0;
     displayValue1.push(solutionValue);
+    solutionValueCheck = true;
  }
-
-function resetDisplay () {
-    display.textContent = "";
-}
 
 function reset () {
     display.textContent = "";
@@ -70,19 +68,19 @@ function reset () {
 }
 
 digitButtons.forEach(item => item.addEventListener("click", function () {
-    display.textContent += this.textContent;
-    (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-
-    if (equalsButtonClicked === true && operatorButtonClicked === false) {
+        display.textContent += this.textContent; //initial round of operations
+        (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
+    if (equalsButtonClicked === true && operatorButtonClicked === false) { //subsequent rounds of operations via equals button
+       equalsButtonClicked = false;
         reset();
         display.textContent += this.textContent;
-        equalsButtonClicked = false;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-    }
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
+    } else if (solutionValueCheck === true) { //subsequent rounds of operations via operator buttons
+        display.textContent = "";
+        display.textContent += this.textContent;
+        displayValue2.push(display.textContent)
+        solutionValueCheck = false;
+    };
 }))   
 
 divideButton.addEventListener("click", function () {
@@ -90,10 +88,6 @@ divideButton.addEventListener("click", function () {
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("divide");
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
 })
 
 multiplyButton.addEventListener("click", function () {
@@ -101,10 +95,6 @@ multiplyButton.addEventListener("click", function () {
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("multiply");
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
 })
 
 sumButton.addEventListener("click", function () {
@@ -112,10 +102,6 @@ sumButton.addEventListener("click", function () {
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("sum");
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
 })
 
 subtractButton.addEventListener("click", function () {
@@ -123,10 +109,6 @@ subtractButton.addEventListener("click", function () {
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
     operatorValue.push("subtract");
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
 }) 
 
 equalsButton.addEventListener("click", function () {
@@ -134,12 +116,10 @@ equalsButton.addEventListener("click", function () {
     operatorButtonClicked = false;
     equalsButtonClicked = true;
     getSolution();
-    console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
-    console.log(operatorButtonClicked)
 });
 
-
-// second condition: equals button not clicked. operator button clicked -> solution displayed on screen -> carry over solution number to dV1 
-// -> when clicking next number, empty display screen, display screen show next number, push next number clicked to dV2 
+//deactivate operatorButtons after click
+//add function to delete button.
+//add function to clear button.
+//deactivate decimal point after click
+//limit solution value decimal points
