@@ -68,15 +68,20 @@ function reset () {
 }
 
 digitButtons.forEach(item => item.addEventListener("click", function () {
-        display.textContent += this.textContent; //initial round of operations
-        (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-    if (equalsButtonClicked === true && operatorButtonClicked === false) { //subsequent rounds of operations via equals button
+    //initial round of operations
+    display.textContent += this.textContent; 
+    (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
+    
+    if //subsequent rounds of operations via equals button
+    (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
         solutionValueCheck = false;
         reset();
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-    } else if (solutionValueCheck === true) { //subsequent rounds of operations via operator buttons
+    
+    } else if //subsequent rounds of operations via operator buttons
+    (solutionValueCheck === true) { 
         display.textContent = "";
         display.textContent += this.textContent;
         displayValue2.push(display.textContent)
@@ -117,7 +122,7 @@ equalsButton.addEventListener("click", function () {
     operatorButtonClicked = false;
     equalsButtonClicked = true;
     getSolution();
-});
+})
 
 //deactivate operatorButtons after click
 //add function to delete button.
