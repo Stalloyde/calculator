@@ -71,7 +71,8 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
         display.textContent += this.textContent; //initial round of operations
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
     if (equalsButtonClicked === true && operatorButtonClicked === false) { //subsequent rounds of operations via equals button
-       equalsButtonClicked = false;
+        equalsButtonClicked = false;
+        solutionValueCheck = false;
         reset();
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
@@ -123,3 +124,4 @@ equalsButton.addEventListener("click", function () {
 //add function to clear button.
 //deactivate decimal point after click
 //limit solution value decimal points
+//reset() doesn't work after long chaining via
