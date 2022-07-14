@@ -124,9 +124,21 @@ equalsButton.addEventListener("click", function () {
     getSolution();
 })
 
+deleteButton.addEventListener("click", function () {
+    if (displayValue2.length > 0) {
+        displayValue2.pop();
+        display.textContent = displayValue2.slice(-1);
+    } else {
+        displayValue1.pop();
+        display.textContent = displayValue1.slice(-1);
+    }
+    console.log(displayValue1)
+    console.log(displayValue2)
+})
+
+clearButton.addEventListener("click", reset);
+
 //deactivate operatorButtons after click
-//add function to delete button.
-//add function to clear button.
+//add function to delete button. -> detect most recent array element. remove it.
 //deactivate decimal point after click
 //limit solution value decimal points
-//reset() doesn't work after long chaining via
