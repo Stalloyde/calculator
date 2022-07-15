@@ -13,6 +13,7 @@ const display = document.querySelector(".display");
 const displayValue1 = [];
 const displayValue2 = [];
 const operatorValue = [];
+display.textContent = "";
 let operatorButtonClicked = false;
 let equalsButtonClicked = false;
 let solutionValueCheck = false;
@@ -67,31 +68,49 @@ function fullReset () {
     displayValue2.length = 0;
     operatorValue.length = 0;
     operatorButtonClicked = false;
+    equalsButtonClicked = false;
+    solutionValueCheck = false;
 }
 
 function inputOperatorValue (operator) {
     if (operatorValue.length === 0) {operatorValue.push(operator)};
 }
 
+function inputDecimal() {
+    decimalButton.addEventListener("click", function () {
+    display.textContent += this.textContent;
+    });
+}
+inputDecimal();
+
 digitButtons.forEach(item => item.addEventListener("click", function () {
     //initial round of operations
     display.textContent += this.textContent; 
-    (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-
+    (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);   
+    console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
     if //subsequent rounds of operations via equals button
     (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
         solutionValueCheck = false;
         fullReset();
+        inputDecimal();
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-    
+        console.log(displayValue1)
+        console.log(displayValue2)
+        console.log(operatorValue)
     } else if //subsequent rounds of operations via operator buttons
     (solutionValueCheck === true) { 
         display.textContent = "";
+        inputDecimal();
         display.textContent += this.textContent;
         displayValue2.push(display.textContent)
         solutionValueCheck = false;
+        console.log(displayValue1)
+    console.log(displayValue2)
+    console.log(operatorValue)
     };
 }))   
 
@@ -142,10 +161,6 @@ deleteButton.addEventListener("click", function () {
 })
 
 clearButton.addEventListener("click", fullReset);
-decimalButton.addEventListener("click", function () {
-    if (!display.textContent.includes(".")) {    
-        display.textContent += this.textContent;
-    };
-})
 
+// figure out bugs for decimals
 //limit solution value decimal points
