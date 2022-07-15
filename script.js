@@ -67,11 +67,15 @@ function reset () {
     operatorButtonClicked = false;
 }
 
+function inputOperatorValue(operator) {
+    if (operatorValue.length === 0) {operatorValue.push(operator)};
+}
+
 digitButtons.forEach(item => item.addEventListener("click", function () {
     //initial round of operations
     display.textContent += this.textContent; 
     (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
-    
+
     if //subsequent rounds of operations via equals button
     (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
@@ -93,28 +97,28 @@ divideButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
-    operatorValue.push("divide");
+    inputOperatorValue("divide")
 })
 
 multiplyButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
-    operatorValue.push("multiply");
+    inputOperatorValue("multiply")
 })
 
 sumButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
-    operatorValue.push("sum");
+    inputOperatorValue("sum")
 })
 
 subtractButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
     if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
-    operatorValue.push("subtract");
+    inputOperatorValue("subtract")
 }) 
 
 equalsButton.addEventListener("click", function () {
@@ -131,14 +135,22 @@ deleteButton.addEventListener("click", function () {
     } else {
         displayValue1.pop();
         display.textContent = displayValue1.slice(-1);
-    }
-    console.log(displayValue1)
-    console.log(displayValue2)
+    };
 })
 
 clearButton.addEventListener("click", reset);
+decimalButton.addEventListener("click", function () {
+    if (!display.textContent.includes(".")) {    
+        display.textContent += this.textContent;
+    };
+})
+
+function disableOperatorButtons (operator) {
+    if (operatorValue === operator) {
+  
+        display.textContent += this.textContent;
+    };
+    }
 
 //deactivate operatorButtons after click
-//add function to delete button. -> detect most recent array element. remove it.
-//deactivate decimal point after click
 //limit solution value decimal points
