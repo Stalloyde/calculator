@@ -50,13 +50,15 @@ function operator (operator, num1, num2) {
 }
 
 function getSolution () {
-    const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
-    display.textContent += solutionValue;
-    displayValue1.length = 0;
-    displayValue2.length = 0;
-    operatorValue.length = 0;
-    displayValue1.push(solutionValue);
-    solutionValueCheck = true;
+    if (displayValue1.length > 0 && displayValue2.length > 0) {
+        const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
+        display.textContent += solutionValue;
+        displayValue1.length = 0;
+        displayValue2.length = 0;
+        operatorValue.length = 0;
+        displayValue1.push(solutionValue);
+        solutionValueCheck = true;
+    };
  }
 
 function fullReset () {
@@ -67,7 +69,7 @@ function fullReset () {
     operatorButtonClicked = false;
 }
 
-function inputOperatorValue(operator) {
+function inputOperatorValue (operator) {
     if (operatorValue.length === 0) {operatorValue.push(operator)};
 }
 
@@ -96,28 +98,29 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
 divideButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
-    if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
+    getSolution();
     inputOperatorValue("divide")
 })
+
 
 multiplyButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
-    if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
+    getSolution();
     inputOperatorValue("multiply")
 })
 
 sumButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
-    if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
+    getSolution();
     inputOperatorValue("sum")
 })
 
 subtractButton.addEventListener("click", function () {
     display.textContent = "";
     operatorButtonClicked = true;
-    if (displayValue1.length > 0 && displayValue2.length > 0) {getSolution()};
+    getSolution();
     inputOperatorValue("subtract")
 }) 
 
@@ -138,19 +141,11 @@ deleteButton.addEventListener("click", function () {
     };
 })
 
-clearButton.addEventListener("click", reset);
+clearButton.addEventListener("click", fullReset);
 decimalButton.addEventListener("click", function () {
     if (!display.textContent.includes(".")) {    
         display.textContent += this.textContent;
     };
 })
 
-function disableOperatorButtons (operator) {
-    if (operatorValue === operator) {
-  
-        display.textContent += this.textContent;
-    };
-    }
-
-//deactivate operatorButtons after click
 //limit solution value decimal points
