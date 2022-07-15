@@ -59,7 +59,7 @@ function getSolution () {
     solutionValueCheck = true;
  }
 
-function reset () {
+function fullReset () {
     display.textContent = "";
     displayValue1.length = 0;
     displayValue2.length = 0;
@@ -80,7 +80,7 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
     (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
         solutionValueCheck = false;
-        reset();
+        fullReset();
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
     
