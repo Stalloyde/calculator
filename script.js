@@ -1,3 +1,4 @@
+const buttons = document.querySelectorAll(".button-items");
 const digitButtons = document.querySelectorAll(".digit-buttons");
 const functionButtons = document.querySelectorAll(".function-buttons")
 const clearButton = document.getElementById("clear");
@@ -77,13 +78,17 @@ function inputOperatorValue (operator) {
     if (operatorValue.length === 0) {operatorValue.push(operator)};
 }
 
+buttons.forEach(item => item.addEventListener("click", function () {
+    item.classList.add("clicked");
+    item.addEventListener("transitionend", function () {item.classList.remove("clicked")});
+}))
+
 digitButtons.forEach(item => item.addEventListener("click", function () {
     //initial round of operations
     display.textContent += this.textContent; 
     (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);   
     digitButtonCheck = true;
-    console.log(displayValue1)
-    console.log(displayValue2)
+
     if //subsequent rounds of operations via equals button
     (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
@@ -92,8 +97,6 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
         digitButtonCheck = true;
-        console.log(displayValue1)
-        console.log(displayValue2)
 } else if //subsequent rounds of operations via operator buttons
     (solutionValueCheck === true) { 
         display.textContent = "";
@@ -101,8 +104,6 @@ digitButtons.forEach(item => item.addEventListener("click", function () {
         displayValue2.push(display.textContent);
         solutionValueCheck = false;
         digitButtonCheck = true;
-        console.log(displayValue1)
-        console.log(displayValue2)
     };
 }))   
 
