@@ -17,7 +17,7 @@ display.textContent = "";
 let operatorButtonClicked = false;
 let equalsButtonClicked = false;
 let solutionValueCheck = false;
-
+let digitButtonCheck = false;
 
 function divide (finalValue1, finalValue2) {
     return finalValue1 / finalValue2;
@@ -70,77 +70,80 @@ function fullReset () {
     operatorButtonClicked = false;
     equalsButtonClicked = false;
     solutionValueCheck = false;
+    digitButtonCheck = false;
 }
 
 function inputOperatorValue (operator) {
     if (operatorValue.length === 0) {operatorValue.push(operator)};
 }
 
-function inputDecimal() {
-    decimalButton.addEventListener("click", function () {
-    display.textContent += this.textContent;
-    });
-}
-inputDecimal();
-
 digitButtons.forEach(item => item.addEventListener("click", function () {
     //initial round of operations
     display.textContent += this.textContent; 
     (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);   
+    digitButtonCheck = true;
     console.log(displayValue1)
     console.log(displayValue2)
-    console.log(operatorValue)
     if //subsequent rounds of operations via equals button
     (equalsButtonClicked === true && operatorButtonClicked === false) { 
         equalsButtonClicked = false;
         solutionValueCheck = false;
         fullReset();
-        inputDecimal();
         display.textContent += this.textContent;
         (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);
+        digitButtonCheck = true;
         console.log(displayValue1)
         console.log(displayValue2)
-        console.log(operatorValue)
-    } else if //subsequent rounds of operations via operator buttons
+} else if //subsequent rounds of operations via operator buttons
     (solutionValueCheck === true) { 
         display.textContent = "";
-        inputDecimal();
         display.textContent += this.textContent;
-        displayValue2.push(display.textContent)
+        displayValue2.push(display.textContent);
         solutionValueCheck = false;
+        digitButtonCheck = true;
         console.log(displayValue1)
-    console.log(displayValue2)
-    console.log(operatorValue)
+        console.log(displayValue2)
     };
 }))   
 
 divideButton.addEventListener("click", function () {
-    display.textContent = "";
-    operatorButtonClicked = true;
-    getSolution();
-    inputOperatorValue("divide")
+    if (digitButtonCheck === true) {
+        display.textContent = "";
+        operatorButtonClicked = true;
+        getSolution();
+        inputOperatorValue("divide");
+        digitButtonCheck = false;
+    };
 })
 
-
 multiplyButton.addEventListener("click", function () {
-    display.textContent = "";
-    operatorButtonClicked = true;
-    getSolution();
-    inputOperatorValue("multiply")
+    if (digitButtonCheck === true) {
+        display.textContent = "";
+        operatorButtonClicked = true;
+        getSolution();
+        inputOperatorValue("multiply");
+        digitButtonCheck = false;
+    };
 })
 
 sumButton.addEventListener("click", function () {
-    display.textContent = "";
-    operatorButtonClicked = true;
-    getSolution();
-    inputOperatorValue("sum")
+    if (digitButtonCheck === true) {
+        display.textContent = "";
+        operatorButtonClicked = true;
+        getSolution();
+        inputOperatorValue("sum");
+        digitButtonCheck = false;
+    };
 })
 
 subtractButton.addEventListener("click", function () {
-    display.textContent = "";
-    operatorButtonClicked = true;
-    getSolution();
-    inputOperatorValue("subtract")
+    if (digitButtonCheck === true) {
+        display.textContent = "";
+        operatorButtonClicked = true;
+        getSolution();
+        inputOperatorValue("subtract");
+        digitButtonCheck = false;
+    };
 }) 
 
 equalsButton.addEventListener("click", function () {
@@ -148,6 +151,10 @@ equalsButton.addEventListener("click", function () {
     operatorButtonClicked = false;
     equalsButtonClicked = true;
     getSolution();
+
+    if (solutionValueCheck === false) {
+    display.textContent = "ERROR";
+    }
 })
 
 deleteButton.addEventListener("click", function () {
@@ -161,6 +168,3 @@ deleteButton.addEventListener("click", function () {
 })
 
 clearButton.addEventListener("click", fullReset);
-
-// figure out bugs for decimals
-//limit solution value decimal points
