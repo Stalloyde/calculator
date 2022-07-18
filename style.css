@@ -1,4 +1,5 @@
  * {
+    box-sizing: border-box;
     text-align: center;
     font-family:Verdana, Geneva, Tahoma, sans-serif
  }
@@ -16,7 +17,7 @@
 .calculator-container {
     background-color: rgb(20, 20, 80);
     border: 1px solid black;
-    height: 80vh;
+    height: 74vh;
     width: 30vw;
     border-radius: 10px;
 }
