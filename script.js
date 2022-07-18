@@ -120,7 +120,6 @@ function updateDisplay (content) {
     };
 }
 
-
 //start of eventlisteners
 buttons.forEach(item => item.addEventListener("click", function () {
     item.classList.add("clicked");
