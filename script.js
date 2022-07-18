@@ -189,6 +189,7 @@ document.addEventListener("keydown", function (e) {
         case "8":
         case "9":
         case "0":
+        case ".":
             updateDisplay(e.key);
             break;
         case "/":
