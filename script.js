@@ -39,29 +39,30 @@ function subtract (finalValue1, finalValue2) {
 }    
 
 function operator (operator, num1, num2) {
-    if (operator === "divide") {
+    if (operator === "divide" || operator === "/") {
         return divide(num1, num2);
     } else if 
-        (operator === "multiply") {
+        (operator === "multiply" || operator === "*") {
         return multiply(num1, num2);
     } else if 
-        (operator === "sum") {
+        (operator === "sum" || operator === "+") {
         return sum(num1, num2);
     } else if 
-        (operator === "subtract") {
+        (operator === "subtract" || operator === "-") {
         return subtract(num1, num2);
     };
 }
 
 function getSolution () {
     if (displayValue1.length > 0 && displayValue2.length > 0) {
-        const solutionValue = operator(operatorValue.toString() , Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
+        const solutionValue = operator(operatorValue.toString(), Number(displayValue1.slice(-1)), Number(displayValue2.slice(-1)));
         display.textContent += solutionValue;
         displayValue1.length = 0;
         displayValue2.length = 0;
-        operatorValue.length = 0;
+        operatorValue.length =  0;
         displayValue1.push(solutionValue);
         solutionValueCheck = true;
+        console.log(solutionValue)
     };
  }
 
@@ -171,37 +172,48 @@ clearButton.addEventListener("click", fullReset);
 
 //keyboard support
 document.addEventListener("keydown", function (e) {
-//switch... if digit. textContent += e.key,  initial round of operations
-switch (e.key) {
-    case "1":
-    case "2":
-    case "3":
-    case "4":
-    case "5":
-    case "6":
-    case "7":
-    case "8":
-    case "9":
-    case "0":
-        updateDisplay(e.key);
-        console.log(displayValue1)
-        console.log(displayValue2)
-        console.log(operatorValue)
-        console.log(solutionValue)
-        break;
-    case "/":
-    case "*":
-    case "+":
-    case "-":
-        getOperatorValue(e.key);
-        console.log(displayValue1)
-        console.log(displayValue2)
-        console.log(operatorValue)
-        console.log(solutionValue)
-        break;
-    case "=":
-    case "enter":
+    switch (e.key) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+        case "5":
+        case "6":
+        case "7":
+        case "8":
+        case "9":
+        case "0":
+            updateDisplay(e.key);
+            break;
+        case "/":
+        case "*":
+        case "+":
+        case "-":
+            getOperatorValue(e.key);
+            break;
+        case "=":
+        case "Enter":
+            display.textContent = "";
+            getSolution(); 
+            equalsButtonClicked = true;
+            operatorButtonClicked = false;
 
-    
-}
-});
+            if (solutionValueCheck === false) {
+            display.textContent = "ERROR";
+            }
+            break;
+        case "Delete":
+        case "Backspace":     
+            if (displayValue2.length > 0) {
+                displayValue2.pop();
+                display.textContent = displayValue2.slice(-1);
+            } else {
+                displayValue1.pop();
+                display.textContent = displayValue1.slice(-1);
+            }
+            break;
+        case "Escape":
+            fullReset();
+            break;
+    };
+})
