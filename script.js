@@ -95,8 +95,15 @@ function getDisplayValue () {
     (operatorButtonClicked === true) ? displayValue2.push(display.textContent) : displayValue1.push(display.textContent);   
 }
 
+function limitDisplay () {
+    if (display.textContent.length > 12) {
+        display.textContent = display.textContent.substring(0,12);
+    }
+} 
+
 function updateDisplay (content) {
     //initial round of operations
+    limitDisplay();
     display.textContent += content;
     getDisplayValue();
     digitButtonCheck = true;
