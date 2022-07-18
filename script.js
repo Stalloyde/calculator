@@ -127,6 +127,16 @@ function updateDisplay (content) {
     };
 }
 
+function removeLastElement () {
+    if (displayValue2.length > 0) {
+        displayValue2.pop();
+        display.textContent = displayValue2.slice(-1);
+    } else {
+        displayValue1.pop();
+        display.textContent = displayValue1.slice(-1);
+    };
+}
+
 //start of eventlisteners
 buttons.forEach(item => item.addEventListener("click", function () {
     item.classList.add("clicked");
@@ -161,19 +171,10 @@ equalsButton.addEventListener("click", function () {
 
     if (solutionValueCheck === false) {
     display.textContent = "ERROR";
-    }
-})
-
-deleteButton.addEventListener("click", function () {
-    if (displayValue2.length > 0) {
-        displayValue2.pop();
-        display.textContent = displayValue2.slice(-1);
-    } else {
-        displayValue1.pop();
-        display.textContent = displayValue1.slice(-1);
     };
 })
 
+deleteButton.addEventListener("click", removeLastElement);
 clearButton.addEventListener("click", fullReset);
 
 //keyboard support
@@ -211,13 +212,7 @@ document.addEventListener("keydown", function (e) {
             break;
         case "Delete":
         case "Backspace":     
-            if (displayValue2.length > 0) {
-                displayValue2.pop();
-                display.textContent = displayValue2.slice(-1);
-            } else {
-                displayValue1.pop();
-                display.textContent = displayValue1.slice(-1);
-            }
+            removeLastElement();
             break;
         case "Escape":
             fullReset();
