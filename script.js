@@ -137,6 +137,20 @@ function removeLastElement () {
     };
 }
 
+function prematureEqualsOperand () {
+    if (solutionValueCheck === false) {
+        display.textContent = "ERROR";
+        }
+}
+
+function equalsOperand () {
+    display.textContent = "";
+    getSolution(); 
+    equalsButtonClicked = true;
+    operatorButtonClicked = false;
+    prematureEqualsOperand();
+}
+
 //start of eventlisteners
 buttons.forEach(item => item.addEventListener("click", function () {
     item.classList.add("clicked");
@@ -164,14 +178,7 @@ subtractButton.addEventListener("click", function () {
 }) 
 
 equalsButton.addEventListener("click", function () {
-    display.textContent = "";
-    getSolution();
-    equalsButtonClicked = true;
-    operatorButtonClicked = false;
-
-    if (solutionValueCheck === false) {
-    display.textContent = "ERROR";
-    };
+    equalsOperand();
 })
 
 deleteButton.addEventListener("click", removeLastElement);
@@ -201,14 +208,7 @@ document.addEventListener("keydown", function (e) {
             break;
         case "=":
         case "Enter":
-            display.textContent = "";
-            getSolution(); 
-            equalsButtonClicked = true;
-            operatorButtonClicked = false;
-
-            if (solutionValueCheck === false) {
-            display.textContent = "ERROR";
-            }
+            equalsOperand();
             break;
         case "Delete":
         case "Backspace":     
