@@ -1,4 +1,5 @@
  * {
+    background-color:blanchedalmond;
     box-sizing: border-box;
     text-align: center;
     font-family:Verdana, Geneva, Tahoma, sans-serif
@@ -80,4 +81,9 @@
 
 .clicked {
     background-color:rgb(300, 290, 220);
+}
+
+footer {
+    margin: 55px;
+    padding: 10px;
 }
